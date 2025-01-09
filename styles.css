@@ -1,1 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Roboto:wght@300;700&display=swap');
 
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #FEFAE0;
+    font-family: 'Georgia', serif;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    position: relative;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    cursor: pointer;
+    transition: top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, transform 0.6s ease, opacity 0.6s ease, box-shadow 0.4s ease, border 0.4s ease;
+}
+
+.section:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: calc(50% - 1px);
+    height: calc(50% - 1px);
+    background-color: #81b29a;
+}
+
+.section:nth-child(2) {
+    top: 0;
+    left: calc(50% + 1px);
+    width: calc(50% - 1px);
+    height: calc(50% - 1px);
+    background-color: #52796f;
+}
+
+.section:nth-child(3) {
+    top: calc(50% + 1px);
+    left: 0;
+    width: calc(50% - 1px);
+    height: calc(50% - 1px);
+    background-color: #6B8F71;
+}
+
+.section:nth-child(4) {
+    top: calc(50% + 1px);
+    left: calc(50% + 1px);
+    width: calc(50% - 1px);
+    height: calc(50% - 1px);
+    background-color: #4A5E44;
+}
+
+/* Additional styling removed for brevity */

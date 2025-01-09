@@ -16,7 +16,6 @@ function toggleActive(activeSection) {
     }
 }
 
-// Prevent clicks on all content containers from propagating
 document.querySelectorAll('.content, .content-container, .projects-container, .contact-container').forEach(container => {
     container.addEventListener('click', event => {
         event.stopPropagation();

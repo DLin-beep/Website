@@ -1,4 +1,4 @@
-function toggleActive(activeSection) {
+/*function toggleActive(activeSection) {
     const sections = document.querySelectorAll('.section');
     const isActive = activeSection.classList.contains('active');
 
@@ -20,4 +20,4 @@ document.querySelectorAll('.content-container-about, .content-container-interest
     container.addEventListener('click', event => {
         event.stopPropagation();
     });
-});
+});*/

@@ -16,7 +16,7 @@ function toggleActive(activeSection) {
     }
 }
 
-document.querySelectorAll('.content, .content-container, .projects-container, .contact-container').forEach(container => {
+document.querySelectorAll('.content-container-about, .content-container-interests, .projects-container, .contact-container').forEach(container => {
     container.addEventListener('click', event => {
         event.stopPropagation();
     });

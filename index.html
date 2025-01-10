@@ -296,35 +296,42 @@
         }
 
         @media (max-width: 768px) {
-            .content-container-about, 
-            .content-container-interests, 
-            .contact-container, 
-            .projects-container {
-                font-size: 1.2rem;
-                line-height: 1.8;
-            }
+    .content-container-about, 
+    .content-container-interests, 
+    .contact-container, 
+    .projects-container {
+        max-width: 90vw;
+        padding: 1rem;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
 
-            .content-container-about h1, 
-            .content-container-interests h1, 
-            .contact-container h1, 
-            .projects-container .column h1 {
-                font-size: 1.5rem;
-            }
+    .content-container-about h1, 
+    .content-container-interests h1, 
+    .contact-container h1, 
+    .projects-container .column h1 {
+        font-size: 1.3rem;
+    }
 
-            .content-container-about ul li, 
-            .content-container-interests ul li, 
-            .projects-container ul li {
-                font-size: 1.1rem;
-            }
+    .content-container-about ul li, 
+    .content-container-interests ul li, 
+    .projects-container ul li {
+        font-size: 0.95rem;
+    }
 
-            .projects-container {
-                max-width: 90vw;
-            }
+    .projects-container {
+        display: block;
+        text-align: center;
+    }
 
-            .content-container {
-                padding: 1rem;
-            }
-        }
+    .projects-container .divider {
+        display: none;
+    }
+
+    .content-container {
+        padding: 0.8rem;
+    }
+}
 
     </style>
 </head>

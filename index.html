@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Personal Website</title>
   <style>
-    /* ----------- BODY & GLOBAL STYLES ----------- */
     body {
       margin: 0;
       height: 100vh;
@@ -13,10 +12,24 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      background-color: #F7F5F2; /* Background color */
+      background-color: #F7F5F2;
       font-family: 'Georgia', serif;
     }
-
+    ::-webkit-scrollbar {
+      width: 0.8vw;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F7F5F2;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #497174;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #364652;
+    }
     .container {
       width: 100vw;
       height: 100vh;
@@ -26,55 +39,49 @@
       gap: 2px;
       position: relative;
     }
-
-    /* ----------- SECTION LAYOUTS & TRANSITIONS ----------- */
     .section {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff; /* Text color for the collapsed sections */
+      color: #fff;
       font-size: 1.5vw;
       position: absolute;
       cursor: pointer;
       transition: all 0.6s ease;
     }
-
-    /* Assign each section a color from a calming palette */
     .section:nth-child(1) {
       top: 0;
       left: 0;
       width: calc(50% - 1px);
       height: calc(50% - 1px);
-      background-color: #364652; /* Dark blue-gray */
+      background-color: #364652;
     }
     .section:nth-child(2) {
       top: 0;
       left: calc(50% + 1px);
       width: calc(50% - 1px);
       height: calc(50% - 1px);
-      background-color: #497174; /* Teal-ish */
+      background-color: #497174;
     }
     .section:nth-child(3) {
       top: calc(50% + 1px);
       left: 0;
       width: calc(50% - 1px);
       height: calc(50% - 1px);
-      background-color: #A9BCD0; /* Soft blue-gray */
+      background-color: #A9BCD0;
     }
     .section:nth-child(4) {
       top: calc(50% + 1px);
       left: calc(50% + 1px);
       width: calc(50% - 1px);
       height: calc(50% - 1px);
-      background-color: #D6D5C9; /* Light warm gray */
+      background-color: #D6D5C9;
     }
-
     .section:not(:hover) {
       transform: scale(0.95);
       opacity: 0.9;
       transition: transform 0.4s ease, opacity 0.4s ease;
     }
-
     .section.active {
       top: 0;
       left: 0;
@@ -84,12 +91,10 @@
       transform: scale(1.1);
       opacity: 1;
     }
-
     .section.active ~ .section {
       pointer-events: none;
       opacity: 0;
     }
-
     .section:nth-child(1).inactive {
       transform: translate(-100%, -100%) scale(0.7);
     }
@@ -102,24 +107,18 @@
     .section:nth-child(4).inactive {
       transform: translate(100%, 100%) scale(0.7);
     }
-
     .inactive {
       transition: transform 0.6s ease, opacity 0.6s ease;
     }
-
-    /* ----------- HEADER (CLICKABLE TITLES) ----------- */
     .header {
       font-size: 2rem;
       text-align: center;
       font-family: 'Tahoma', sans-serif;
       pointer-events: none;
     }
-
     .section.active .header {
       display: none;
     }
-
-    /* ----------- CONTENT (VISIBLE AFTER CLICK) ----------- */
     .content {
       opacity: 0;
       transform: scale(0.9);
@@ -134,92 +133,62 @@
       visibility: visible;
       transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s;
     }
-
-    .content-container {
-      max-width: 70vw;
-      padding: 1.5vw;
-      text-align: left;
-      background-color: #F7F5F2; /* Match body background for consistency */
+    .content-container-about,
+    .content-container-interests,
+    .projects-container,
+    .contact-container {
+      width: 70vw;
+      max-width: 80vw;
+      max-height: 60vh;
+      padding: 2vw;
+      margin: 0 auto;
+      background-color: #F7F5F2;
       border-radius: 1vw;
-      box-shadow: 0 0.8vw 1.6vw rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
       overflow-y: auto;
-      max-height: 50vh;
+      text-align: left;
     }
-
-    /* ----------- ABOUT ME STYLES ----------- */
     .content-container-about h1,
     .content-container-about h3 {
-      margin: 10px auto;
+      margin: 1vw auto;
       text-align: center;
-      color: #364652; /* Tie in with Section 1 color or something similar */
+      color: #364652;
     }
-
     .content-container-about p,
     .content-container-about ul {
-      margin: 10px 0;
+      margin: 1vw 0;
       line-height: 1.6;
       color: #364652;
     }
-
-    .content-container-about {
-      background-color: #F7F5F2;
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    /* ----------- INTERESTS STYLES ----------- */
     .content-container-interests h1,
     .content-container-interests h3 {
-      margin: 10px auto;
+      margin: 1vw auto;
       text-align: center;
-      color: #497174; /* Tie in with Section 2 color */
+      color: #497174;
     }
-
     .content-container-interests p,
     .content-container-interests ul {
-      margin: 10px 0;
+      margin: 1vw 0;
       line-height: 1.6;
       color: #497174;
     }
-
-    .content-container-interests {
-      background-color: #F7F5F2;
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .content-container ul {
+    .content-container-interests ul {
       list-style-type: none;
       padding: 0;
     }
-    .content-container ul li {
+    .content-container-interests ul li {
       text-align: left;
-      margin: 5px 0;
+      margin: 0.5vw 0;
     }
-
-    /* ----------- PROJECTS STYLES ----------- */
     .projects-container {
-      max-width: 1000px;
       text-align: center;
-      padding: 40px;
-      background-color: #F7F5F2;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      color: #6B6B6B; /* Slightly darker neutral for text */
+      color: #A9BCD0;
     }
-
     .projects-container h1 {
-      margin: 10px auto;
+      margin: 1vw auto;
       font-weight: bold;
-      color: #6B6B6B;
+      color: #A9BCD0;
     }
-
     .projects-container ul {
       margin: 0;
       padding: 0;
@@ -228,101 +197,78 @@
       text-align: center;
     }
     .projects-container ul li {
-      margin: 10px 0;
+      margin: 1vw 0;
       line-height: 1.6;
     }
     .projects-container ul li a {
-      color: #497174; /* Tie in with Section 2 color for accent */
+      color: #A9BCD0;
       text-decoration: none;
       font-weight: bold;
     }
     .projects-container ul li a:hover {
       text-decoration: underline;
     }
-
-    /* ----------- CONTACT SECTION WITH CONTACT FORM ----------- */
     .contact-container {
-      max-width: 1000px;
       text-align: center;
-      padding: 40px;
-      background-color: #F7F5F2;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      color: #364652; /* A calmer dark text color */
+      color: #D6D5C9;
     }
-
     .contact-container h1 {
-      margin: 10px auto;
+      margin: 1vw auto;
       text-align: center;
-      color: #364652;
+      color: #D6D5C9;
       font-weight: bold;
     }
-
     .contact-container p {
-      margin: 10px 0;
+      margin: 1vw 0;
       line-height: 1.6;
-      text-align: center;
-      color: #364652;
+      color: #D6D5C9;
     }
-
     .contact-container a {
-      color: #497174;
+      color: #D6D5C9;
       text-decoration: none;
       font-weight: bold;
     }
-
     .contact-container a:hover {
       text-decoration: underline;
     }
-
-    /* ----------- FORM STYLES ----------- */
     .contact-container form {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 2vh;
     }
-
     .contact-container input,
     .contact-container textarea {
       width: 80%;
-      max-width: 500px;
-      margin: 0.5rem 0;
-      padding: 0.8rem;
+      margin: 1vh 0;
+      padding: 1vh;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 0.5vw;
       font-size: 1rem;
       font-family: 'Georgia', serif;
     }
-
     .contact-container textarea {
-      height: 120px;
+      height: 15vh;
       resize: vertical;
     }
-
-    /* Make sure the user can add their email and send. */
     .contact-container button[type="submit"] {
-      background-color: #497174; /* accent color */
+      background-color: #497174;
       color: #fff;
       border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 4px;
+      padding: 1vh 2vw;
+      border-radius: 0.5vw;
       cursor: pointer;
       font-size: 1rem;
-      margin-top: 0.5rem;
-      font-family: 'Georgia', serif; /* Match input font */
+      margin-top: 1vh;
+      font-family: 'Georgia', serif;
     }
-
     .contact-container button[type="submit"]:hover {
       background-color: #364652;
     }
-
   </style>
 </head>
-
 <body>
   <div class="container">
-    <!-- ABOUT ME SECTION -->
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">About Me</h1>
       <div class="content">
@@ -338,8 +284,6 @@
         </div>
       </div>
     </div>
-
-    <!-- INTERESTS SECTION -->
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">Interests</h1>
       <div class="content">
@@ -355,8 +299,6 @@
         </div>
       </div>
     </div>
-
-    <!-- PROJECTS SECTION -->
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">Projects</h1>
       <div class="content">
@@ -371,8 +313,6 @@
         </div>
       </div>
     </div>
-
-    <!-- CONTACT/FIND ME SECTION - "mailto" action to send to your email -->
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">Contact/Find Me</h1>
       <div class="content">
@@ -380,11 +320,9 @@
           <h1>Contact/Find Me</h1>
           <p>LinkedIn: <a href="https://www.linkedin.com/in/derek-lin-b0831a306/" target="_blank">My LinkedIn Profile</a></p>
           <p>GitHub: <a href="https://github.com/DLin-beep" target="_blank">My GitHub</a></p>
-          
-          <!-- Contact Form that opens the mail client to send to your email -->
           <form action="mailto:dereklin0620@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
           </form>
@@ -392,35 +330,27 @@
       </div>
     </div>
   </div>
-
-  <!-- JavaScript for toggling sections -->
   <script>
     function toggleActive(activeSection) {
       const sections = document.querySelectorAll('.section');
       const isActive = activeSection.classList.contains('active');
-
-      sections.forEach((section) => {
-        section.classList.remove('active', 'inactive');
+      sections.forEach(section => {
+        section.classList.remove('active','inactive');
       });
-
       if (!isActive) {
         activeSection.classList.add('active');
-        sections.forEach((section) => {
+        sections.forEach(section => {
           if (!section.classList.contains('active')) {
             section.classList.add('inactive');
           }
         });
       }
     }
-
-    // Prevent clicks inside expanded content from toggling sections back.
-    document
-      .querySelectorAll('.content, .content-container, .projects-container, .contact-container')
-      .forEach(container => {
-        container.addEventListener('click', event => {
-          event.stopPropagation();
-        });
+    document.querySelectorAll('.content,.content-container-about,.content-container-interests,.projects-container,.contact-container').forEach(container => {
+      container.addEventListener('click',event => {
+        event.stopPropagation();
       });
+    });
   </script>
 </body>
 </html>

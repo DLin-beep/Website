@@ -1,392 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Website</title>
+  <style>
+    /* ----------- BODY & GLOBAL STYLES ----------- */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: #F7F5F2; /* Background color */
+      font-family: 'Georgia', serif;
+    }
 
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background-color: #FEFAE0;
-            font-family: 'Georgia', serif;
-        }
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      position: relative;
+    }
 
-        .container {
-            width: 100vw;
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 2px;
-            position: relative;
-        }
+    /* ----------- SECTION LAYOUTS & TRANSITIONS ----------- */
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff; /* Text color for the collapsed sections */
+      font-size: 1.5vw;
+      position: absolute;
+      cursor: pointer;
+      transition: all 0.6s ease;
+    }
 
-        .section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5vw;
-            position: absolute;
-            cursor: pointer;
-            transition: all 0.6s ease;
-        }
+    /* Assign each section a color from a calming palette */
+    .section:nth-child(1) {
+      top: 0;
+      left: 0;
+      width: calc(50% - 1px);
+      height: calc(50% - 1px);
+      background-color: #364652; /* Dark blue-gray */
+    }
+    .section:nth-child(2) {
+      top: 0;
+      left: calc(50% + 1px);
+      width: calc(50% - 1px);
+      height: calc(50% - 1px);
+      background-color: #497174; /* Teal-ish */
+    }
+    .section:nth-child(3) {
+      top: calc(50% + 1px);
+      left: 0;
+      width: calc(50% - 1px);
+      height: calc(50% - 1px);
+      background-color: #A9BCD0; /* Soft blue-gray */
+    }
+    .section:nth-child(4) {
+      top: calc(50% + 1px);
+      left: calc(50% + 1px);
+      width: calc(50% - 1px);
+      height: calc(50% - 1px);
+      background-color: #D6D5C9; /* Light warm gray */
+    }
 
-        .section:nth-child(1) {
-            top: 0;
-            left: 0;
-            width: calc(50% - 1px);
-            height: calc(50% - 1px);
-            background-color: #81b29a;
-        }
+    .section:not(:hover) {
+      transform: scale(0.95);
+      opacity: 0.9;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
 
-        .section:nth-child(2) {
-            top: 0;
-            left: calc(50% + 1px);
-            width: calc(50% - 1px);
-            height: calc(50% - 1px);
-            background-color: #52796f;
-        }
+    .section.active {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      transform: scale(1.1);
+      opacity: 1;
+    }
 
-        .section:nth-child(3) {
-            top: calc(50% + 1px);
-            left: 0;
-            width: calc(50% - 1px);
-            height: calc(50% - 1px);
-            background-color: #6B8F71;
-        }
+    .section.active ~ .section {
+      pointer-events: none;
+      opacity: 0;
+    }
 
-        .section:nth-child(4) {
-            top: calc(50% + 1px);
-            left: calc(50% + 1px);
-            width: calc(50% - 1px);
-            height: calc(50% - 1px);
-            background-color: #4A5E44;
-        }
+    .section:nth-child(1).inactive {
+      transform: translate(-100%, -100%) scale(0.7);
+    }
+    .section:nth-child(2).inactive {
+      transform: translate(100%, -100%) scale(0.7);
+    }
+    .section:nth-child(3).inactive {
+      transform: translate(-100%, 100%) scale(0.7);
+    }
+    .section:nth-child(4).inactive {
+      transform: translate(100%, 100%) scale(0.7);
+    }
 
-        .section:not(:hover) {
-            transform: scale(0.95);
-            opacity: 0.9;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
+    .inactive {
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
 
-        .section:not(:hover) {
-            transform: scale(0.95);
-            opacity: 0.9;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
+    /* ----------- HEADER (CLICKABLE TITLES) ----------- */
+    .header {
+      font-size: 2rem;
+      text-align: center;
+      font-family: 'Tahoma', sans-serif;
+      pointer-events: none;
+    }
 
-        .section.active {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            transform: scale(1.1);
-            opacity: 1;
-        }
+    .section.active .header {
+      display: none;
+    }
 
-        .section.active ~ .section {
-            pointer-events: none;
-            opacity: 0;
-        }
+    /* ----------- CONTENT (VISIBLE AFTER CLICK) ----------- */
+    .content {
+      opacity: 0;
+      transform: scale(0.9);
+      position: absolute;
+      text-align: left;
+      visibility: hidden;
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
+    }
+    .section.active .content {
+      opacity: 1;
+      transform: scale(1);
+      visibility: visible;
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s;
+    }
 
-        .section:nth-child(1).inactive {
-            transform: translate(-100%, -100%) scale(0.7);
-        }
+    .content-container {
+      max-width: 70vw;
+      padding: 1.5vw;
+      text-align: left;
+      background-color: #F7F5F2; /* Match body background for consistency */
+      border-radius: 1vw;
+      box-shadow: 0 0.8vw 1.6vw rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+      max-height: 50vh;
+    }
 
-        .section:nth-child(2).inactive {
-            transform: translate(100%, -100%) scale(0.7);
-        }
+    /* ----------- ABOUT ME STYLES ----------- */
+    .content-container-about h1,
+    .content-container-about h3 {
+      margin: 10px auto;
+      text-align: center;
+      color: #364652; /* Tie in with Section 1 color or something similar */
+    }
 
-        .section:nth-child(3).inactive {
-            transform: translate(-100%, 100%) scale(0.7);
-        }
+    .content-container-about p,
+    .content-container-about ul {
+      margin: 10px 0;
+      line-height: 1.6;
+      color: #364652;
+    }
 
-        .section:nth-child(4).inactive {
-            transform: translate(100%, 100%) scale(0.7);
-        }
+    .content-container-about {
+      background-color: #F7F5F2;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .inactive {
-            transition: transform 0.6s ease, opacity 0.6s ease;
-        }
+    /* ----------- INTERESTS STYLES ----------- */
+    .content-container-interests h1,
+    .content-container-interests h3 {
+      margin: 10px auto;
+      text-align: center;
+      color: #497174; /* Tie in with Section 2 color */
+    }
 
-        .header {
-            font-size: 2rem;
-            text-align: center;
-            font-family: 'Tahoma', sans-serif;
-            pointer-events: none;
-        }
+    .content-container-interests p,
+    .content-container-interests ul {
+      margin: 10px 0;
+      line-height: 1.6;
+      color: #497174;
+    }
 
-        .section.active .header {
-            display: none;
-        }
+    .content-container-interests {
+      background-color: #F7F5F2;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .content {
-            opacity: 0;
-            transform: scale(0.9);
-            position: absolute;
-            text-align: left;
-            visibility: hidden;
-            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
-        }
+    .content-container ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .content-container ul li {
+      text-align: left;
+      margin: 5px 0;
+    }
 
-        .section.active .content {
-            opacity: 1;
-            transform: scale(1);
-            visibility: visible;
-            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s;
-        }
+    /* ----------- PROJECTS STYLES ----------- */
+    .projects-container {
+      max-width: 1000px;
+      text-align: center;
+      padding: 40px;
+      background-color: #F7F5F2;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      color: #6B6B6B; /* Slightly darker neutral for text */
+    }
 
-        .content-container {
-            max-width: 70vw;
-            padding: 1.5vw;
-            text-align: left;
-            background-color: #FEFAE0;
-            border-radius: 1vw;
-            box-shadow: 0 0.8vw 1.6vw rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
-            max-height: 50vh;
-        }
+    .projects-container h1 {
+      margin: 10px auto;
+      font-weight: bold;
+      color: #6B6B6B;
+    }
 
-        .content-container-about h1, .content-container-about h3 {
-            margin: 10px auto;
-            text-align: center;
-            color: #81b29a;
-        }
+    .projects-container ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      width: 100%;
+      text-align: center;
+    }
+    .projects-container ul li {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    .projects-container ul li a {
+      color: #497174; /* Tie in with Section 2 color for accent */
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .projects-container ul li a:hover {
+      text-decoration: underline;
+    }
 
-        .content-container-about p, .content-container-about ul {
-            margin: 10px 0;
-            line-height: 1.6;
-            color: #81b29a;
-        }
+    /* ----------- CONTACT SECTION WITH CONTACT FORM ----------- */
+    .contact-container {
+      max-width: 1000px;
+      text-align: center;
+      padding: 40px;
+      background-color: #F7F5F2;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      color: #364652; /* A calmer dark text color */
+    }
 
-        .content-container-about {
-            background-color: #FEFAE0;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .contact-container h1 {
+      margin: 10px auto;
+      text-align: center;
+      color: #364652;
+      font-weight: bold;
+    }
 
-        .content-container-interests h1, .content-container-interests h3 {
-            margin: 10px auto;
-            text-align: center;
-            color: #52796f;
-        }
+    .contact-container p {
+      margin: 10px 0;
+      line-height: 1.6;
+      text-align: center;
+      color: #364652;
+    }
 
-        .content-container-interests p, .content-container-interests ul {
-            margin: 10px 0;
-            line-height: 1.6;
-            color: #52796f;
-        }
+    .contact-container a {
+      color: #497174;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        .content-container-interests {
-            background-color: #FEFAE0;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .contact-container a:hover {
+      text-decoration: underline;
+    }
 
-        .content-container ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    /* ----------- FORM STYLES ----------- */
+    .contact-container form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-        .content-container ul li {
-            text-align: left;
-            margin: 5px 0;
-        }
+    .contact-container input,
+    .contact-container textarea {
+      width: 80%;
+      max-width: 500px;
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: 'Georgia', serif;
+    }
 
-        .contact-container {
-            max-width: 1000px;
-            text-align: center;
-            padding: 40px;
-            background-color: #FEFAE0;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
+    .contact-container textarea {
+      height: 120px;
+      resize: vertical;
+    }
 
-        .contact-container h1 {
-            margin: 10px auto;
-            text-align: center;
-            color: #4A5E44;
-            font-weight: bold;
-        }
+    /* Make sure the user can add their email and send. */
+    .contact-container button[type="submit"] {
+      background-color: #497174; /* accent color */
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      font-family: 'Georgia', serif; /* Match input font */
+    }
 
-        .contact-container p {
-            margin: 10px 0;
-            line-height: 1.6;
-            text-align: center;
-            color: #4A5E44;
-        }
+    .contact-container button[type="submit"]:hover {
+      background-color: #364652;
+    }
 
-        .contact-container a {
-            color: #4A5E44;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .contact-container a:hover {
-            text-decoration: underline;
-        }
-
-        .projects-container {
-            max-width: 1200px;
-            padding: 40px;
-            background-color: #FEFAE0;
-            border-radius: 10px;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: start;
-            gap: 40px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .projects-container .column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .projects-container .column h1 {
-            margin-bottom: 20px;
-            text-align: center;
-            color: #6B8F71;
-            font-weight: bold;
-        }
-
-        .projects-container ul {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-            text-align: center;
-            width: 100%;
-        }
-
-        .projects-container ul li {
-            line-height: 1.6;
-        }
-
-        .projects-container ul li a {
-            color: #6B8F71;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .projects-container ul li a:hover {
-            text-decoration: underline;
-        }
-
-        .projects-container .divider {
-            background-color: #6B8F71;
-            width: 2px;
-            height: 100%;
-        }
-    </style>
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="section" onclick="toggleActive(this)">
-            <h1 class="header">About Me</h1>
-            <div class="content">
-                <div class="content-container-about">
-                    <h1>About Me</h1>
-                    <ul>
-                        <li>Hi there! I'm Derek, and I'm a senior in high school. I am passionate about exploring the worlds of mathematics and programming. I love how numbers, code, and ideas come together to solve complex problems and create something meaningful.</li>
-                        <li>I’ve picked up a few skills along the way. Python is my go-to language, but I also enjoy experimenting with C/C++, SQL, JavaScript, and even some web design tools like CSS and HTML. For projects, you’ll often find me working in environments like VS Code or PyCharm.</li>
-                        <li>Recently, I’ve been working on topics like machine learning and probability. I am planning on studying mathematics once I head to college.</li>
-                        <li>Looking ahead, I’m working towards internships in FinTech and want to keep building on my foundation.</li>
-                        <li>Let’s connect if you share my love for all things math, programming, or just solving puzzles in life!</li>
-                    </ul>
-                </div>
-            </div>
+  <div class="container">
+    <!-- ABOUT ME SECTION -->
+    <div class="section" onclick="toggleActive(this)">
+      <h1 class="header">About Me</h1>
+      <div class="content">
+        <div class="content-container-about">
+          <h1>About Me</h1>
+          <ul>
+            <li>Hi there! I'm Derek, and I'm a senior in high school. I am passionate about exploring the worlds of mathematics and programming. I love how numbers, code, and ideas come together to solve complex problems and create something meaningful.</li>
+            <li>I’ve picked up a few skills along the way. Python is my go-to language, but I also enjoy experimenting with C/C++, SQL, JavaScript, and even some web design tools like CSS and HTML. For projects, you’ll often find me working in environments like VS Code or PyCharm.</li>
+            <li>Recently, I’ve been working on topics like machine learning and probability. I am planning on studying mathematics once I head to college.</li>
+            <li>Looking ahead, I’m working towards internships in FinTech and want to keep building on my foundation.</li>
+            <li>Let’s connect if you share my love for all things math, programming, or just solving puzzles in life!</li>
+          </ul>
         </div>
-        <div class="section" onclick="toggleActive(this)">
-            <h1 class="header">Interests</h1>
-            <div class="content">
-                <div class="content-container-interests">
-                    <h1>Interests</h1>
-                    <ul>
-                        <li>I love to play video games, especially first-person shooters or RPGs that are story-driven.</li>
-                        <li>I am interested in shows like Suits and Grey's Anatomy.</li>
-                        <li>I like to stay active through weight training and working on achieving personal fitness goals.</li>
-                        <li>Reading is one of my favorite activities; I like fantasy series such as A Song of Ice and Fire or The Dune Series.</li>
-                        <li>I like travelling to unique areas and also taking photographs. I have a collections of photos that I have taken around the world and any opportunity that I get to add to it, I certainly will!</li>
-                    </ul>
-                </div>
-            </div>
-        </div>        
-        <div class="section" onclick="toggleActive(this)">
-            <h1 class="header">Projects & Certifications</h1>
-            <div class="content">
-                <div class="projects-container">
-                    <div class="column">
-                        <h1>Projects</h1>
-                        <ul>
-                            <li><a href="https://github.com/DLin-beep/Sudoku-Project" target="_blank">Sudoku Project</a></li>
-                            <li><a href="https://github.com/DLin-beep/GBM-Simulation" target="_blank">GBM Simulation</a></li>
-                            <li><a href="https://github.com/DLin-beep/LSTM-and-RFM-Model" target="_blank">LSTM and RFM Model</a></li>
-                        </ul>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="column">
-                        <h1>Certifications</h1>
-                        <ul>
-                            <li><a href="https://linkd.wtv" target="_blank">temporary placeholder</a></li>
-                            <li><a href="https://linke.wtv" target="_blank">temporary placeholder</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section" onclick="toggleActive(this)">
-            <h1 class="header">Contact/Find Me</h1>
-            <div class="content">
-                <div class="contact-container">
-                    <h1>Contact/Find Me</h1>
-                    <p>Email: <a href="mailto:dilibi07@gmail.com">dilibi07@gmail.com</a></p>
-                    <p>LinkedIn: <a href="https://www.linkedin.com/in/derek-lin-b0831a306/" target="_blank">My LinkedIn Profile</a></p>
-                    <p>GitHub: <a href="https://github.com/DLin-beep" target="_blank">My GitHub</a></p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <script>
-        function toggleActive(activeSection) {
-            const sections = document.querySelectorAll('.section');
-            const isActive = activeSection.classList.contains('active');
+    <!-- INTERESTS SECTION -->
+    <div class="section" onclick="toggleActive(this)">
+      <h1 class="header">Interests</h1>
+      <div class="content">
+        <div class="content-container-interests">
+          <h1>Interests</h1>
+          <ul>
+            <li>I love to play video games, especially first-person shooters or RPGs that are story-driven.</li>
+            <li>I am interested in shows like Suits and Grey's Anatomy.</li>
+            <li>I like to stay active through weight training and working on achieving personal fitness goals.</li>
+            <li>Reading is one of my favorite activities; I like fantasy series such as A Song of Ice and Fire or The Dune Series.</li>
+            <li>I like travelling to unique areas and also taking photographs. I have a collection of photos that I have taken around the world and any opportunity that I get to add to it, I certainly will!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-            sections.forEach((section) => {
-                section.classList.remove('active', 'inactive');
-            });
+    <!-- PROJECTS SECTION -->
+    <div class="section" onclick="toggleActive(this)">
+      <h1 class="header">Projects</h1>
+      <div class="content">
+        <div class="projects-container">
+          <h1>Projects</h1>
+          <ul>
+            <li><a href="https://github.com/DLin-beep/Flight-Simulation" target="_blank">Flight Simulation</a></li>
+            <li><a href="https://github.com/DLin-beep/Sudoku-Project" target="_blank">Sudoku Project</a></li>
+            <li><a href="https://github.com/DLin-beep/GBM-Simulation" target="_blank">GBM Simulation</a></li>
+            <li><a href="https://github.com/DLin-beep/LSTM-and-RFM-Model" target="_blank">LSTM and RFM Model</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-            if (!isActive) {
-                activeSection.classList.add('active');
-                sections.forEach((section) => {
-                    if (!section.classList.contains('active')) {
-                        section.classList.add('inactive');
-                    }
-                });
-            }
-        }
+    <!-- CONTACT/FIND ME SECTION - "mailto" action to send to your email -->
+    <div class="section" onclick="toggleActive(this)">
+      <h1 class="header">Contact/Find Me</h1>
+      <div class="content">
+        <div class="contact-container">
+          <h1>Contact/Find Me</h1>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/derek-lin-b0831a306/" target="_blank">My LinkedIn Profile</a></p>
+          <p>GitHub: <a href="https://github.com/DLin-beep" target="_blank">My GitHub</a></p>
+          
+          <!-- Contact Form that opens the mail client to send to your email -->
+          <form action="mailto:dereklin0620@gmail.com" method="POST" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        document.querySelectorAll('.content, .content-container, .projects-container, .contact-container').forEach(container => {
-            container.addEventListener('click', event => {
-                event.stopPropagation();
-            });
+  <!-- JavaScript for toggling sections -->
+  <script>
+    function toggleActive(activeSection) {
+      const sections = document.querySelectorAll('.section');
+      const isActive = activeSection.classList.contains('active');
+
+      sections.forEach((section) => {
+        section.classList.remove('active', 'inactive');
+      });
+
+      if (!isActive) {
+        activeSection.classList.add('active');
+        sections.forEach((section) => {
+          if (!section.classList.contains('active')) {
+            section.classList.add('inactive');
+          }
         });
-    </script>
+      }
+    }
+
+    // Prevent clicks inside expanded content from toggling sections back.
+    document
+      .querySelectorAll('.content, .content-container, .projects-container, .contact-container')
+      .forEach(container => {
+        container.addEventListener('click', event => {
+          event.stopPropagation();
+        });
+      });
+  </script>
 </body>
 </html>

@@ -126,10 +126,28 @@
       visibility: visible;
       transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s;
     }
-    .content-container-about,
-    .content-container-interests,
-    .projects-container,
-    .contact-container {
+    .exit-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: var(--white);
+      color: var(--text-color);
+      border: 2px solid var(--text-color);
+      font-family: 'Bubblegum Sans', cursive;
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 9999;
+    }
+    .exit-btn:hover {
+      background-color: var(--text-color);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+    .content-container-about {
       width: 70vw;
       max-width: 80vw;
       max-height: 60vh;
@@ -139,11 +157,10 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       border: 3px solid var(--white);
       overflow-y: auto;
-      text-align: left;
-    }
-    .content-container-about {
       background: var(--green-1);
       color: var(--text-color);
+      text-align: left;
+      position: relative;
     }
     .content-container-about::-webkit-scrollbar {
       width: 0.8vw;
@@ -160,58 +177,75 @@
     .content-container-about::-webkit-scrollbar-thumb:hover {
       background-color: #555;
     }
-    .content-container-interests {
+    .skills-container {
+      width: 70vw;
+      max-width: 80vw;
+      max-height: 60vh;
+      padding: 2vw;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid var(--white);
+      overflow-y: auto;
       background: var(--green-2);
       color: var(--text-color);
+      text-align: left;
+      position: relative;
     }
-    .content-container-interests::-webkit-scrollbar {
+    .skills-container::-webkit-scrollbar {
       width: 0.8vw;
       border-radius: 9999px;
     }
-    .content-container-interests::-webkit-scrollbar-track {
+    .skills-container::-webkit-scrollbar-track {
       background: var(--green-2);
       border-radius: 9999px;
     }
-    .content-container-interests::-webkit-scrollbar-thumb {
+    .skills-container::-webkit-scrollbar-thumb {
       background-color: var(--text-color);
       border-radius: 9999px;
     }
-    .content-container-interests::-webkit-scrollbar-thumb:hover {
+    .skills-container::-webkit-scrollbar-thumb:hover {
       background-color: #555;
     }
     .projects-container {
+      width: 70vw;
+      max-width: 80vw;
+      max-height: 60vh;
+      padding: 2vw;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid var(--white);
+      overflow-y: auto;
       background: var(--green-3);
       color: var(--text-color);
+      text-align: left;
+      position: relative;
     }
-    .contact-container {
-      background: var(--green-4);
-      color: var(--text-color);
+    .projects-container::-webkit-scrollbar {
+      width: 0.8vw;
+      border-radius: 9999px;
     }
-    .content-container-about h1,
-    .content-container-interests h1,
+    .projects-container::-webkit-scrollbar-track {
+      background: var(--green-3);
+      border-radius: 9999px;
+    }
+    .projects-container::-webkit-scrollbar-thumb {
+      background-color: var(--text-color);
+      border-radius: 9999px;
+    }
+    .projects-container::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
     .projects-container h1,
-    .contact-container h1 {
+    .contact-container h1,
+    .content-container-about h1,
+    .skills-container h1 {
       font-family: 'Bubblegum Sans', cursive;
       letter-spacing: 2px;
       margin-top: 0;
       font-size: 2.2rem;
       color: var(--text-color);
-    }
-    .content-container-about p,
-    .content-container-about ul,
-    .content-container-interests p,
-    .content-container-interests ul,
-    .projects-container .project-list,
-    .contact-container p {
-      margin: 1vw 0;
-      line-height: 1.6;
-    }
-    .content-container-interests ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .content-container-interests ul li {
-      margin: 0.5vw 0;
     }
     .projects-container .project-list {
       display: flex;
@@ -251,6 +285,36 @@
     }
     .projects-container .project-card a:hover {
       background: rgba(255,255,255,0.5);
+    }
+    .contact-container {
+      width: 70vw;
+      max-width: 80vw;
+      max-height: 60vh;
+      padding: 2vw;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid var(--white);
+      overflow-y: auto;
+      background: var(--green-4);
+      color: var(--text-color);
+      text-align: left;
+      position: relative;
+    }
+    .contact-container::-webkit-scrollbar {
+      width: 0.8vw;
+      border-radius: 9999px;
+    }
+    .contact-container::-webkit-scrollbar-track {
+      background: var(--green-4);
+      border-radius: 9999px;
+    }
+    .contact-container::-webkit-scrollbar-thumb {
+      background-color: var(--text-color);
+      border-radius: 9999px;
+    }
+    .contact-container::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
     }
     .contact-container a {
       color: var(--text-color);
@@ -308,29 +372,29 @@
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">About Me</h1>
       <div class="content">
+        <button class="exit-btn" onclick="closeSection(event)">Close</button>
         <div class="content-container-about">
           <h1>About Me</h1>
           <ul>
-            <li>Hi there! I'm Derek and I am passionate about the worlds of mathematics and programming. I love how numbers, code, and ideas come together to solve complex problems and create something meaningful.</li>
-            <li>Python is my go-to language, but I also enjoy experimenting with C/C++, and web design tools like HTML, CSS, and JavaScript.</li>
-            <li>Recently, I’ve been working on topics like machine learning and probability.</li>
+            <li>Hi there! I'm Derek and I am passionate about the worlds of mathematics, programming, and problem-solving.</li>
             <li>I’m working towards a career in FinTech and want to keep building on my foundation.</li>
+            <li>In my free time, I enjoy playing video games (mainly FPS and RPG), staying active through weight training and running, reading books (ASOIAF, Dune), and cooking.</li>
             <li>Let’s connect if you are also interested in math, programming, or just solving puzzles in life!</li>
           </ul>
         </div>
       </div>
     </div>
     <div class="section" onclick="toggleActive(this)">
-      <h1 class="header">Interests</h1>
+      <h1 class="header">Skills</h1>
       <div class="content">
-        <div class="content-container-interests">
-          <h1>Interests</h1>
+        <button class="exit-btn" onclick="closeSection(event)">Close</button>
+        <div class="skills-container">
+          <h1>Skills</h1>
           <ul>
-            <li>I love to play video games, especially first-person shooters or RPGs that are story-driven.</li>
-            <li>I am interested in shows like Suits and Grey's Anatomy.</li>
-            <li>I like to stay active through weight training and working on achieving personal fitness goals.</li>
-            <li>Reading is one of my favorite activities; I enjoy fantasy series such as A Song of Ice and Fire or The Dune Series.</li>
-            <li>Traveling to unique areas and taking photographs is another passion. I have a collection from my adventures around the world.</li>
+            <li>Python (NumPy, Pandas, Plotly, & Matplotlib)</li>
+            <li>Learning C/C++ and R</li>
+            <li>Web Development languages: HTML, CSS, and JavaScript</li>
+            <li>Machine Learning (PyTorch, Tensorflow, & Scikit-learn)</li>
           </ul>
         </div>
       </div>
@@ -338,6 +402,7 @@
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">Projects</h1>
       <div class="content">
+        <button class="exit-btn" onclick="closeSection(event)">Close</button>
         <div class="projects-container">
           <h1>Projects</h1>
           <ul class="project-list">
@@ -364,10 +429,15 @@
     <div class="section" onclick="toggleActive(this)">
       <h1 class="header">Contact/Find Me</h1>
       <div class="content">
+        <button class="exit-btn" onclick="closeSection(event)">Close</button>
         <div class="contact-container">
           <h1>Contact/Find Me</h1>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/derek-lin-b0831a306/" target="_blank">My LinkedIn Profile</a></p>
-          <p>GitHub: <a href="https://github.com/DLin-beep" target="_blank">My GitHub</a></p>
+          <p>LinkedIn:
+            <a href="https://www.linkedin.com/in/derek-lin-b0831a306/" target="_blank">My LinkedIn Profile</a>
+          </p>
+          <p>GitHub:
+            <a href="https://github.com/DLin-beep" target="_blank">My GitHub</a>
+          </p>
           <form action="mailto:dereklin0620@gmail.com" method="POST" enctype="text/plain">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
@@ -380,26 +450,34 @@
   </div>
   <script>
     function toggleActive(activeSection) {
-      const sections = document.querySelectorAll('.section');
-      const isActive = activeSection.classList.contains('active');
+      const sections = document.querySelectorAll('.section')
+      const isActive = activeSection.classList.contains('active')
       sections.forEach(section => {
-        section.classList.remove('active','inactive');
-      });
+        section.classList.remove('active','inactive')
+      })
       if (!isActive) {
-        activeSection.classList.add('active');
+        activeSection.classList.add('active')
         sections.forEach(section => {
           if (!section.classList.contains('active')) {
-            section.classList.add('inactive');
+            section.classList.add('inactive')
           }
-        });
+        })
       }
     }
-    document.querySelectorAll('.content, .content-container-about, .content-container-interests, .projects-container, .contact-container')
+    function closeSection(event) {
+      event.stopPropagation()
+      const sections = document.querySelectorAll('.section')
+      sections.forEach(section => {
+        section.classList.remove('active','inactive')
+      })
+    }
+    document
+      .querySelectorAll('.content, .content-container-about, .skills-container, .projects-container, .contact-container')
       .forEach(container => {
         container.addEventListener('click', event => {
-          event.stopPropagation();
-        });
-      });
+          event.stopPropagation()
+        })
+      })
   </script>
 </body>
 </html>

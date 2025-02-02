@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Personal Website</title>
+  <title>My Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #EBE7D3;
+      --green-1: #A7D0CD;
+      --green-2: #8FCB9B;
+      --green-3: #C2DED1;
+      --green-4: #A3B18A;
+      --text-color: #333;
+      --white: #fff;
+    }
     body {
       margin: 0;
       height: 100vh;
@@ -12,23 +22,8 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      background-color: #F7F5F2;
-      font-family: 'Georgia', serif;
-    }
-    ::-webkit-scrollbar {
-      width: 0.8vw;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #F7F5F2;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #497174;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #364652;
+      background-color: var(--bg-color);
+      font-family: 'Comic Neue', cursive, sans-serif;
     }
     .container {
       width: 100vw;
@@ -36,51 +31,59 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 2px;
+      gap: 16px;
       position: relative;
+      box-sizing: border-box;
+      padding: 8px;
     }
     .section {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      font-size: 1.5vw;
+      color: var(--text-color);
+      font-size: 2vw;
       position: absolute;
       cursor: pointer;
-      transition: all 0.6s ease;
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 20px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      border: 3px solid var(--white);
     }
     .section:nth-child(1) {
       top: 0;
       left: 0;
-      width: calc(50% - 1px);
-      height: calc(50% - 1px);
-      background-color: #364652;
+      width: calc(48% - 8px);
+      height: calc(48% - 8px);
+      background-color: var(--green-1);
+      transform: rotate(-2deg);
     }
     .section:nth-child(2) {
       top: 0;
-      left: calc(50% + 1px);
-      width: calc(50% - 1px);
-      height: calc(50% - 1px);
-      background-color: #497174;
+      left: calc(50% + 8px);
+      width: calc(48% - 8px);
+      height: calc(48% - 8px);
+      background-color: var(--green-2);
+      transform: rotate(1deg);
     }
     .section:nth-child(3) {
-      top: calc(50% + 1px);
+      top: calc(50% + 8px);
       left: 0;
-      width: calc(50% - 1px);
-      height: calc(50% - 1px);
-      background-color: #A9BCD0;
+      width: calc(48% - 8px);
+      height: calc(48% - 8px);
+      background-color: var(--green-3);
+      transform: rotate(-1deg);
     }
     .section:nth-child(4) {
-      top: calc(50% + 1px);
-      left: calc(50% + 1px);
-      width: calc(50% - 1px);
-      height: calc(50% - 1px);
-      background-color: #D6D5C9;
+      top: calc(50% + 8px);
+      left: calc(50% + 8px);
+      width: calc(48% - 8px);
+      height: calc(48% - 8px);
+      background-color: var(--green-4);
+      transform: rotate(2deg);
     }
-    .section:not(:hover) {
-      transform: scale(0.95);
-      opacity: 0.9;
-      transition: transform 0.4s ease, opacity 0.4s ease;
+    .section:not(.active):hover {
+      transform: scale(1.02) translateZ(0) !important;
+      z-index: 5;
     }
     .section.active {
       top: 0;
@@ -88,32 +91,22 @@
       width: 100%;
       height: 100%;
       z-index: 10;
-      transform: scale(1.1);
-      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      border-radius: 30px;
     }
     .section.active ~ .section {
       pointer-events: none;
       opacity: 0;
     }
-    .section:nth-child(1).inactive {
-      transform: translate(-100%, -100%) scale(0.7);
-    }
-    .section:nth-child(2).inactive {
-      transform: translate(100%, -100%) scale(0.7);
-    }
-    .section:nth-child(3).inactive {
-      transform: translate(-100%, 100%) scale(0.7);
-    }
-    .section:nth-child(4).inactive {
-      transform: translate(100%, 100%) scale(0.7);
-    }
-    .inactive {
-      transition: transform 0.6s ease, opacity 0.6s ease;
+    .section.inactive {
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 0.5;
     }
     .header {
-      font-size: 2rem;
-      text-align: center;
-      font-family: 'Tahoma', sans-serif;
+      font-family: 'Bubblegum Sans', cursive;
+      letter-spacing: 1px;
+      font-size: 3rem;
+      color: var(--text-color);
       pointer-events: none;
     }
     .section.active .header {
@@ -142,94 +135,134 @@
       max-height: 60vh;
       padding: 2vw;
       margin: 0 auto;
-      background-color: #F7F5F2;
-      border-radius: 1vw;
-      box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid var(--white);
       overflow-y: auto;
       text-align: left;
     }
+    .content-container-about {
+      background: var(--green-1);
+      color: var(--text-color);
+    }
+    .content-container-about::-webkit-scrollbar {
+      width: 0.8vw;
+      border-radius: 9999px;
+    }
+    .content-container-about::-webkit-scrollbar-track {
+      background: var(--green-1);
+      border-radius: 9999px;
+    }
+    .content-container-about::-webkit-scrollbar-thumb {
+      background-color: var(--text-color);
+      border-radius: 9999px;
+    }
+    .content-container-about::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+    .content-container-interests {
+      background: var(--green-2);
+      color: var(--text-color);
+    }
+    .content-container-interests::-webkit-scrollbar {
+      width: 0.8vw;
+      border-radius: 9999px;
+    }
+    .content-container-interests::-webkit-scrollbar-track {
+      background: var(--green-2);
+      border-radius: 9999px;
+    }
+    .content-container-interests::-webkit-scrollbar-thumb {
+      background-color: var(--text-color);
+      border-radius: 9999px;
+    }
+    .content-container-interests::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+    .projects-container {
+      background: var(--green-3);
+      color: var(--text-color);
+    }
+    .contact-container {
+      background: var(--green-4);
+      color: var(--text-color);
+    }
     .content-container-about h1,
-    .content-container-about h3 {
-      margin: 1vw auto;
-      text-align: center;
-      color: #364652;
+    .content-container-interests h1,
+    .projects-container h1,
+    .contact-container h1 {
+      font-family: 'Bubblegum Sans', cursive;
+      letter-spacing: 2px;
+      margin-top: 0;
+      font-size: 2.2rem;
+      color: var(--text-color);
     }
     .content-container-about p,
-    .content-container-about ul {
-      margin: 1vw 0;
-      line-height: 1.6;
-      color: #364652;
-    }
-    .content-container-interests h1,
-    .content-container-interests h3 {
-      margin: 1vw auto;
-      text-align: center;
-      color: #497174;
-    }
+    .content-container-about ul,
     .content-container-interests p,
-    .content-container-interests ul {
+    .content-container-interests ul,
+    .projects-container .project-list,
+    .contact-container p {
       margin: 1vw 0;
       line-height: 1.6;
-      color: #497174;
     }
     .content-container-interests ul {
       list-style-type: none;
       padding: 0;
     }
     .content-container-interests ul li {
-      text-align: left;
       margin: 0.5vw 0;
     }
-    .projects-container {
-      text-align: center;
-      color: #A9BCD0;
-    }
-    .projects-container h1 {
-      margin: 1vw auto;
-      font-weight: bold;
-      color: #A9BCD0;
-    }
-    .projects-container ul {
-      margin: 0;
+    .projects-container .project-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
       padding: 0;
-      list-style-type: none;
-      width: 100%;
+      list-style: none;
+      justify-content: center;
+    }
+    .projects-container .project-card {
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 1.5vw;
+      width: 280px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
       text-align: center;
     }
-    .projects-container ul li {
-      margin: 1vw 0;
-      line-height: 1.6;
+    .projects-container .project-card:hover {
+      transform: scale(1.05);
     }
-    .projects-container ul li a {
-      color: #A9BCD0;
+    .projects-container .project-card h3 {
+      margin: 0.5vw 0;
+    }
+    .projects-container .project-card a {
+      color: var(--text-color);
       text-decoration: none;
-      font-weight: bold;
+      background: rgba(255,255,255,0.3);
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      margin-top: 1vh;
+      display: inline-block;
     }
-    .projects-container ul li a:hover {
-      text-decoration: underline;
-    }
-    .contact-container {
-      text-align: center;
-      color: #D6D5C9;
-    }
-    .contact-container h1 {
-      margin: 1vw auto;
-      text-align: center;
-      color: #D6D5C9;
-      font-weight: bold;
-    }
-    .contact-container p {
-      margin: 1vw 0;
-      line-height: 1.6;
-      color: #D6D5C9;
+    .projects-container .project-card a:hover {
+      background: rgba(255,255,255,0.5);
     }
     .contact-container a {
-      color: #D6D5C9;
+      color: var(--text-color);
       text-decoration: none;
-      font-weight: bold;
+      background: rgba(255,255,255,0.2);
+      padding: 5px 10px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
     }
     .contact-container a:hover {
-      text-decoration: underline;
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
     }
     .contact-container form {
       display: flex;
@@ -242,28 +275,31 @@
       width: 80%;
       margin: 1vh 0;
       padding: 1vh;
-      border: 1px solid #ccc;
-      border-radius: 0.5vw;
-      font-size: 1rem;
-      font-family: 'Georgia', serif;
+      border: 3px solid var(--green-4);
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-family: 'Comic Neue', cursive, sans-serif;
     }
     .contact-container textarea {
       height: 15vh;
       resize: vertical;
     }
     .contact-container button[type="submit"] {
-      background-color: #497174;
-      color: #fff;
+      background: var(--green-2);
+      color: var(--text-color);
       border: none;
-      padding: 1vh 2vw;
-      border-radius: 0.5vw;
+      padding: 10px 30px;
+      border-radius: 15px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.2rem;
       margin-top: 1vh;
-      font-family: 'Georgia', serif;
+      font-family: 'Bubblegum Sans', cursive;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
     }
     .contact-container button[type="submit"]:hover {
-      background-color: #364652;
+      transform: scale(1.05);
+      background: var(--green-1);
     }
   </style>
 </head>
@@ -275,11 +311,11 @@
         <div class="content-container-about">
           <h1>About Me</h1>
           <ul>
-            <li>Hi there! I'm Derek, and I'm a senior in high school. I am passionate about exploring the worlds of mathematics and programming. I love how numbers, code, and ideas come together to solve complex problems and create something meaningful.</li>
-            <li>I’ve picked up a few skills along the way. Python is my go-to language, but I also enjoy experimenting with C/C++, SQL, JavaScript, and even some web design tools like CSS and HTML. For projects, you’ll often find me working in environments like VS Code or PyCharm.</li>
-            <li>Recently, I’ve been working on topics like machine learning and probability. I am planning on studying mathematics once I head to college.</li>
-            <li>Looking ahead, I’m working towards internships in FinTech and want to keep building on my foundation.</li>
-            <li>Let’s connect if you share my love for all things math, programming, or just solving puzzles in life!</li>
+            <li>Hi there! I'm Derek and I am passionate about the worlds of mathematics and programming. I love how numbers, code, and ideas come together to solve complex problems and create something meaningful.</li>
+            <li>Python is my go-to language, but I also enjoy experimenting with C/C++, and web design tools like HTML, CSS, and JavaScript.</li>
+            <li>Recently, I’ve been working on topics like machine learning and probability.</li>
+            <li>I’m working towards a career in FinTech and want to keep building on my foundation.</li>
+            <li>Let’s connect if you are also interested in math, programming, or just solving puzzles in life!</li>
           </ul>
         </div>
       </div>
@@ -293,8 +329,8 @@
             <li>I love to play video games, especially first-person shooters or RPGs that are story-driven.</li>
             <li>I am interested in shows like Suits and Grey's Anatomy.</li>
             <li>I like to stay active through weight training and working on achieving personal fitness goals.</li>
-            <li>Reading is one of my favorite activities; I like fantasy series such as A Song of Ice and Fire or The Dune Series.</li>
-            <li>I like travelling to unique areas and also taking photographs. I have a collection of photos that I have taken around the world and any opportunity that I get to add to it, I certainly will!</li>
+            <li>Reading is one of my favorite activities; I enjoy fantasy series such as A Song of Ice and Fire or The Dune Series.</li>
+            <li>Traveling to unique areas and taking photographs is another passion. I have a collection from my adventures around the world.</li>
           </ul>
         </div>
       </div>
@@ -304,11 +340,23 @@
       <div class="content">
         <div class="projects-container">
           <h1>Projects</h1>
-          <ul>
-            <li><a href="https://github.com/DLin-beep/Flight-Simulation" target="_blank">Flight Simulation</a></li>
-            <li><a href="https://github.com/DLin-beep/Sudoku-Project" target="_blank">Sudoku Project</a></li>
-            <li><a href="https://github.com/DLin-beep/GBM-Simulation" target="_blank">GBM Simulation</a></li>
-            <li><a href="https://github.com/DLin-beep/LSTM-and-RFM-Model" target="_blank">LSTM and RFM Model</a></li>
+          <ul class="project-list">
+            <li class="project-card">
+              <h3>Flight Simulation</h3>
+              <a href="https://github.com/DLin-beep/Flight-Simulation" target="_blank">View on GitHub</a>
+            </li>
+            <li class="project-card">
+              <h3>Sudoku Project</h3>
+              <a href="https://github.com/DLin-beep/Sudoku-Project" target="_blank">View on GitHub</a>
+            </li>
+            <li class="project-card">
+              <h3>GBM Simulation</h3>
+              <a href="https://github.com/DLin-beep/GBM-Simulation" target="_blank">View on GitHub</a>
+            </li>
+            <li class="project-card">
+              <h3>LSTM and RFM Model</h3>
+              <a href="https://github.com/DLin-beep/LSTM-and-RFM-Model" target="_blank">View on GitHub</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -346,11 +394,12 @@
         });
       }
     }
-    document.querySelectorAll('.content,.content-container-about,.content-container-interests,.projects-container,.contact-container').forEach(container => {
-      container.addEventListener('click',event => {
-        event.stopPropagation();
+    document.querySelectorAll('.content, .content-container-about, .content-container-interests, .projects-container, .contact-container')
+      .forEach(container => {
+        container.addEventListener('click', event => {
+          event.stopPropagation();
+        });
       });
-    });
   </script>
 </body>
 </html>

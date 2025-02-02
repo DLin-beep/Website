@@ -365,6 +365,29 @@
       transform: scale(1.05);
       background: var(--green-1);
     }
+    @media (max-width: 600px) {
+      .section {
+        font-size: 5vw;
+      }
+      .header {
+        font-size: 8vw;
+      }
+      .projects-container h1,
+      .contact-container h1,
+      .content-container-about h1,
+      .skills-container h1 {
+        font-size: 6vw;
+      }
+      .projects-container .project-card {
+        width: 80%;
+      }
+      .content-container-about, .skills-container,
+      .projects-container, .contact-container {
+        width: 90vw;
+        max-height: 60vh;
+        padding: 5vw;
+      }
+    }
   </style>
 </head>
 <body>

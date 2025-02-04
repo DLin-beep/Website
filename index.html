@@ -28,13 +28,9 @@
     .container {
       width: 100vw;
       height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 16px;
       position: relative;
       box-sizing: border-box;
-      padding: 8px;
+      padding: 0;
     }
     .section {
       display: flex;
@@ -50,34 +46,34 @@
       border: 3px solid var(--white);
     }
     .section:nth-child(1) {
-      top: 0;
-      left: 0;
-      width: calc(48% - 8px);
-      height: calc(48% - 8px);
+      top: 2%;
+      left: 2%;
+      width: 46%;
+      height: 46%;
       background-color: var(--green-1);
       transform: rotate(-2deg);
     }
     .section:nth-child(2) {
-      top: 0;
-      left: calc(50% + 8px);
-      width: calc(48% - 8px);
-      height: calc(48% - 8px);
+      top: 2%;
+      left: 52%;
+      width: 46%;
+      height: 46%;
       background-color: var(--green-2);
       transform: rotate(1deg);
     }
     .section:nth-child(3) {
-      top: calc(50% + 8px);
-      left: 0;
-      width: calc(48% - 8px);
-      height: calc(48% - 8px);
+      top: 52%;
+      left: 2%;
+      width: 46%;
+      height: 46%;
       background-color: var(--green-3);
       transform: rotate(-1deg);
     }
     .section:nth-child(4) {
-      top: calc(50% + 8px);
-      left: calc(50% + 8px);
-      width: calc(48% - 8px);
-      height: calc(48% - 8px);
+      top: 52%;
+      left: 52%;
+      width: 46%;
+      height: 46%;
       background-color: var(--green-4);
       transform: rotate(2deg);
     }
@@ -400,8 +396,8 @@
           <h1>About Me</h1>
           <ul>
             <li>Hi there! I'm Derek and I am passionate about the worlds of mathematics, programming, and problem-solving.</li>
-            <li>I’m working towards a career in Tech and want to keep building on my foundation.</li>
-            <li>In my free time, I enjoy playing video games (mainly FPS and RPG), staying active through weight training and running, reading books (ASOIAF, Fourth Wing), and cooking.</li>
+            <li>I’m working towards a career in FinTech and want to keep building on my foundation.</li>
+            <li>In my free time, I enjoy playing video games (mainly FPS and RPG), staying active through weight training and running, reading books (ASOIAF, Dune), and cooking.</li>
             <li>Let’s connect if you are also interested in math, programming, or just solving puzzles in life!</li>
           </ul>
         </div>
@@ -462,7 +458,7 @@
             <a href="https://github.com/DLin-beep" target="_blank">My GitHub</a>
           </p>
           <form action="mailto:dereklin0620@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name (This is a placeholder; it will not work)" required>
+            <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
